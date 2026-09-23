@@ -95,7 +95,7 @@ export const OrdersPage: React.FC = () => {
       </div>
 
       {/* Tabs Filter Bar */}
-      <div className="flex items-center gap-2 border-b border-slate-800 pb-3 overflow-x-auto">
+      <div className="flex items-center gap-2 border-b border-slate-800 pb-3 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
         {tabs.map((tab) => {
           const count =
             tab === 'ALL' ? orderList.length : orderList.filter((o) => o.status === tab).length;
@@ -104,7 +104,7 @@ export const OrdersPage: React.FC = () => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 flex items-center gap-2 ${
+              className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 flex items-center gap-2 ${
                 isActive
                   ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/20'
                   : 'bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800'
@@ -126,33 +126,33 @@ export const OrdersPage: React.FC = () => {
       {/* Orders Data Table */}
       <div className="glass-panel rounded-2xl border border-slate-800 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full text-left border-collapse min-w-[720px]">
             <thead>
               <tr className="border-b border-slate-800 bg-slate-900/50 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                <th className="px-6 py-4">Order Number</th>
-                <th className="px-6 py-4">Customer</th>
-                <th className="px-6 py-4">Total Amount</th>
-                <th className="px-6 py-4">Order Status</th>
-                <th className="px-6 py-4">Payment Method</th>
-                <th className="px-6 py-4">Created Date</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Order Number</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Customer</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Total Amount</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Order Status</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Payment Method</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Created Date</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60 text-sm">
               {filteredOrders.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-12 text-center text-slate-500">
+                  <td colSpan={7} className="px-4 sm:px-6 py-12 text-center text-slate-500">
                     No orders registered under status "{activeTab}".
                   </td>
                 </tr>
               ) : (
                 filteredOrders.map((order) => (
                   <tr key={order.id} className="hover:bg-slate-800/40 transition-colors">
-                    <td className="px-6 py-4 font-bold text-white">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-bold text-white">
                       #{order.orderNumber || order.id.slice(0, 8)}
                     </td>
 
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4">
                       <div className="flex items-center gap-2">
                         <div className="w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 text-xs font-bold shrink-0">
                           <UserIcon className="w-3.5 h-3.5" />
@@ -163,25 +163,25 @@ export const OrdersPage: React.FC = () => {
                       </div>
                     </td>
 
-                    <td className="px-6 py-4 font-black text-emerald-400">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-black text-emerald-400">
                       ${order.totalAmount?.toFixed(2)}
                     </td>
 
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4">
                       <StatusBadge type="order" status={order.status} />
                     </td>
 
-                    <td className="px-6 py-4 text-slate-300 font-mono text-xs">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 text-slate-300 font-mono text-xs">
                       <span className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800">
                         {order.payment?.paymentMethod || 'BAKONG_KHQR'}
                       </span>
                     </td>
 
-                    <td className="px-6 py-4 text-slate-400 text-xs">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 text-slate-400 text-xs">
                       {new Date(order.createdAt).toLocaleDateString()}
                     </td>
 
-                    <td className="px-6 py-4 text-right space-x-2">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 text-right space-x-2">
                       <button
                         onClick={() => setViewingOrder(order)}
                         className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"

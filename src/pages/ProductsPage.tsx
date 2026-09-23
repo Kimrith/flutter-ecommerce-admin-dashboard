@@ -184,7 +184,7 @@ export const ProductsPage: React.FC = () => {
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="glass-panel p-4 rounded-2xl flex flex-col md:flex-row gap-4 justify-between items-center border border-slate-800">
+      <div className="glass-panel p-4 rounded-2xl flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center border border-slate-800">
         <div className="relative w-full md:w-80">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
@@ -200,7 +200,7 @@ export const ProductsPage: React.FC = () => {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-sky-500 w-full md:w-auto"
+            className="px-4 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-sm text-slate-200 focus:outline-none focus:border-sky-500 w-full md:w-auto flex-1 md:flex-initial"
           >
             <option value="">All Categories</option>
             {categories.map((cat) => (
@@ -212,7 +212,7 @@ export const ProductsPage: React.FC = () => {
 
           <button
             onClick={fetchProducts}
-            className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 transition-colors"
+            className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 transition-colors shrink-0"
           >
             <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
           </button>
@@ -222,21 +222,21 @@ export const ProductsPage: React.FC = () => {
       {/* Products Data Table */}
       <div className="glass-panel rounded-2xl border border-slate-800 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full text-left border-collapse min-w-[700px]">
             <thead>
               <tr className="border-b border-slate-800 bg-slate-900/50 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                <th className="px-6 py-4">Product</th>
-                <th className="px-6 py-4">SKU</th>
-                <th className="px-6 py-4">Category</th>
-                <th className="px-6 py-4">Price</th>
-                <th className="px-6 py-4">Stock</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Product</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">SKU</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Category</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Price</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Stock</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60 text-sm">
               {filteredProducts.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-6 py-12 text-center text-slate-500">
+                  <td colSpan={6} className="px-4 sm:px-6 py-12 text-center text-slate-500">
                     No products found matching your search.
                   </td>
                 </tr>
@@ -251,7 +251,7 @@ export const ProductsPage: React.FC = () => {
 
                   return (
                     <tr key={product.id} className="hover:bg-slate-800/40 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-4 sm:px-6 py-3.5 sm:py-4">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 overflow-hidden flex items-center justify-center shrink-0">
                             {imageUrl ? (
@@ -276,21 +276,21 @@ export const ProductsPage: React.FC = () => {
                         </div>
                       </td>
 
-                      <td className="px-6 py-4 font-mono text-xs text-slate-400">
+                      <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-mono text-xs text-slate-400">
                         {product.sku || 'N/A'}
                       </td>
 
-                      <td className="px-6 py-4">
+                      <td className="px-4 sm:px-6 py-3.5 sm:py-4">
                         <span className="px-2.5 py-1 rounded-full bg-slate-800 text-sky-400 border border-slate-700 text-xs font-semibold">
                           {product.category?.name || 'Uncategorized'}
                         </span>
                       </td>
 
-                      <td className="px-6 py-4 font-extrabold text-emerald-400">
+                      <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-extrabold text-emerald-400">
                         ${product.price?.toFixed(2)}
                       </td>
 
-                      <td className="px-6 py-4">
+                      <td className="px-4 sm:px-6 py-3.5 sm:py-4">
                         <span
                           className={`font-semibold text-xs px-2.5 py-1 rounded-md ${
                             product.stock > 10
@@ -304,7 +304,7 @@ export const ProductsPage: React.FC = () => {
                         </span>
                       </td>
 
-                      <td className="px-6 py-4 text-right space-x-2">
+                      <td className="px-4 sm:px-6 py-3.5 sm:py-4 text-right space-x-2">
                         <button
                           onClick={() => handleOpenEditModal(product)}
                           className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"

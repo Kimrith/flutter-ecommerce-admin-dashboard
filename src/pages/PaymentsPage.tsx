@@ -84,60 +84,60 @@ export const PaymentsPage: React.FC = () => {
 
       {/* Payment Transactions Table */}
       <div className="glass-panel rounded-2xl border border-slate-800 overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-800">
+        <div className="px-4 sm:px-6 py-4 border-b border-slate-800">
           <h3 className="text-base font-bold text-white">Recorded Payment Log</h3>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full text-left border-collapse min-w-[700px]">
             <thead>
               <tr className="border-b border-slate-800 bg-slate-900/50 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                <th className="px-6 py-4">Order Ref</th>
-                <th className="px-6 py-4">Amount</th>
-                <th className="px-6 py-4">Method</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4">Bakong MD5</th>
-                <th className="px-6 py-4">Transaction ID</th>
-                <th className="px-6 py-4 text-right">Details</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Order Ref</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Amount</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Method</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Status</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Bakong MD5</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4">Transaction ID</th>
+                <th className="px-4 sm:px-6 py-3.5 sm:py-4 text-right">Details</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60 text-sm">
               {paymentRecords.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-12 text-center text-slate-500">
+                  <td colSpan={7} className="px-4 sm:px-6 py-12 text-center text-slate-500">
                     No payment transactions generated yet.
                   </td>
                 </tr>
               ) : (
                 paymentRecords.map(({ order, payment }) => (
                   <tr key={payment.id} className="hover:bg-slate-800/40 transition-colors">
-                    <td className="px-6 py-4 font-bold text-white">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-bold text-white">
                       #{order.orderNumber || order.id.slice(0, 8)}
                     </td>
 
-                    <td className="px-6 py-4 font-black text-emerald-400">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-black text-emerald-400">
                       ${payment.amount?.toFixed(2)} {payment.currency || 'USD'}
                     </td>
 
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4">
                       <span className="px-2.5 py-1 rounded-full bg-slate-800 text-sky-400 text-xs font-mono border border-slate-700">
                         {payment.paymentMethod}
                       </span>
                     </td>
 
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4">
                       <StatusBadge type="payment" status={payment.status} />
                     </td>
 
-                    <td className="px-6 py-4 font-mono text-xs text-slate-400">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-mono text-xs text-slate-400">
                       {payment.md5 ? `${payment.md5.slice(0, 10)}...` : 'N/A'}
                     </td>
 
-                    <td className="px-6 py-4 font-mono text-xs text-slate-400">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 font-mono text-xs text-slate-400">
                       {payment.transactionId || 'N/A'}
                     </td>
 
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-4 sm:px-6 py-3.5 sm:py-4 text-right">
                       <button
                         onClick={() => setInspectPayment(payment)}
                         className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition-colors"
